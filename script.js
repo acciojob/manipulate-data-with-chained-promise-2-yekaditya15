@@ -1,9 +1,8 @@
-//your JS code here. If required.
 function getNumbers() {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve([1, 2, 3, 4]);
-    }, 3000);
+    }, 1000); 
   });
 }
 
@@ -11,6 +10,7 @@ function filterEvenNumbers(numbers) {
   return new Promise((resolve) => {
     setTimeout(() => {
       const evenNumbers = numbers.filter((num) => num % 2 === 0);
+      document.getElementById("output").textContent = evenNumbers.join(", ");
       resolve(evenNumbers);
     }, 1000);
   });
@@ -20,17 +20,14 @@ function multiplyNumbers(numbers) {
   return new Promise((resolve) => {
     setTimeout(() => {
       const multipliedNumbers = numbers.map((num) => num * 2);
+      document.getElementById("output").textContent = multipliedNumbers.join(", ");
       resolve(multipliedNumbers);
-    }, 4000);
+    }, 2000);
   });
 }
 
+
 getNumbers()
-  .then((numbers) => filterEvenNumbers(numbers))
-  .then((evenNumbers) => {
-    document.getElementById("output").textContent = evenNumbers.join(", ");
-    return multiplyNumbers(evenNumbers);
-  })
-  .then((multipliedNumbers) => {
-    document.getElementById("output").textContent = multipliedNumbers.join(", ");
-  });
+  .then(filterEvenNumbers)
+  .then(multiplyNumbers)
+  .catch((error) => console.error("Error:", error));
