@@ -21,7 +21,7 @@ function multiplyNumbers(numbers) {
     setTimeout(() => {
       const multipliedNumbers = numbers.map((num) => num * 2);
       resolve(multipliedNumbers);
-    }, 2000);
+    }, 4000);
   });
 }
 
